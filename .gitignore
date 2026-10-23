@@ -1,0 +1,4 @@
+# generated market snapshots live only in the published artifact
+app/data/
+*.pyc
+__pycache__/
