@@ -21,17 +21,18 @@ Takes about four minutes: Kalshi rate-limits to roughly one request per second. 
 `app/prop-curves.html` to the artifact URL above with `app/data/kalshi-nfl.json` attached as the
 published file `data/kalshi-nfl.json`.
 
-A scheduled task does exactly this on game days (see "Refresh schedule" below). The page shows an amber
-dot in the top bar when its snapshot is more than six hours old, which is the signal that a refresh
-failed.
+A scheduled task does the same thing on a fixed cadence (see "Refresh schedule" below). The page shows
+an amber dot in the top bar when its snapshot is more than six hours old.
 
 ## Refresh schedule
 
-Kickoff windows in Eastern time:
+A scheduled task refreshes the board once a day at 8:44am Eastern on Wednesday, Thursday, Friday and
+Saturday. There are no automatic runs Sunday through Tuesday, since lineups are locked by then; run the
+task by hand from the scheduled tasks list in the Claude app whenever fresher numbers are wanted.
 
-- Sundays, hourly from 8am to 11pm
-- Mondays and Thursdays, hourly from 5pm to 11pm
-- Tuesday through Saturday, once at about 8:45am
+The scheduled task does not use this repository. Its prompt carries a copy of `scripts/snapshot.py`,
+because sessions started by a scheduled task are not allowed to run code from a freshly cloned repo. If
+the script changes here, update the task's prompt to match.
 
 ## Why not live?
 
